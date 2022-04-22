@@ -33,13 +33,14 @@ public class RollingViewData {
 }
 
 public struct NodeRollingView: ViewRepresentable {
+    public var metalFragment: FragmentBuilder
+    
     var nodeTap: RawDataTap
-    var metalFragment: FragmentBuilder
     var rollingData = RollingViewData()
 
-    public init(_ node: Node, color: Color = .gray, bufferSize: Int = 1024) {
+    public init(_ node: Node, color: Color = .gray, isCentered: Bool = false, bufferSize: Int = 1024) {
 
-        metalFragment = FragmentBuilder(foregroundColor: color.cg, isCentered: false, isFilled: false)
+        metalFragment = FragmentBuilder(foregroundColor: color.cg, isCentered: isCentered, isFilled: false)
         nodeTap = RawDataTap(node, bufferSize: UInt32(bufferSize))
     }
 
